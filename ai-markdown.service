@@ -1,0 +1,18 @@
+[Unit]
+Description=AI Markdown Converter
+After=network.target docker.service
+Requires=docker.service
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/ai/ai-markdown
+ExecStart=/usr/bin/python3 /ai/ai-markdown/app.py
+Restart=always
+RestartSec=5
+Environment="MARKDOWN_MODEL=MODEL_NAME"
+Environment="MARKDOWN_API_URL=API_URL"
+Environment="MARKDOWN_API_TOKEN=API_TOKEN"
+
+[Install]
+WantedBy=multi-user.target
